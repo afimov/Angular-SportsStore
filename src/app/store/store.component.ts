@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Product} from "../model/product.model";
 import {ProductRepository} from "../model/product.repository";
+import { Cart } from "../model/cart.model";
 
 @Component({
   selector: "store",
@@ -10,7 +11,8 @@ import {ProductRepository} from "../model/product.repository";
 export class StoreComponent {
   public selectedCategory = null;
 
-  constructor(private repository: ProductRepository) {}
+  constructor(private repository: ProductRepository,
+              private cart: Cart) {}
 
   get products(): Product[] {
     return this.repository.getProducts(this.selectedCategory);
@@ -22,5 +24,9 @@ export class StoreComponent {
 
   changeCategory(newCategory?: string) {
     this.selectedCategory = newCategory;
+  }
+
+  addProductToCart(product: Product) {
+    this.cart.addLine(product);
   }
 }
