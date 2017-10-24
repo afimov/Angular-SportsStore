@@ -7,7 +7,7 @@ export class Cart {
   public itemCount: number = 0;
   public cartPrice: number = 0;
 
-  addLine(product: Product, quantity: number = 1) {
+  addLine(product: Product, quantity: number = 0.5) {
     let line = this.lines.find(line => line.product.id == product.id);
     if (line != undefined) {
       line.quantity += quantity;
